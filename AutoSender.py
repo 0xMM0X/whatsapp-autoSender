@@ -1,4 +1,4 @@
-# Copyright © 2022 | Made with ♥ By: MostafaAbdelaziz "me@mmox.me"
+# Copyright © 2022 | Made By: MostafaAbdelaziz "me@mmox.me" , Mohamed Ehab 
 # -- coding: utf-8 -
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,6 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import time
 
+msg =" " # change this massage with the message you want
 nms = []  # an empty list to append names later
 nums = []  # an empty list to append numbers later
 nums_with_no_WA = []  # an empty list to append numbers with no what'sApp
@@ -82,8 +83,7 @@ driver.get(link)
 time.sleep(10)  # prepare your phone to scan the code in those 10 seconds
 
 # prepare your phone to scan the code in those 10 seconds
-# change this massage with the message you want
-msg =" "
+
 
 start = 1
 for num in al:  # loop to send to all the sheet
@@ -96,5 +96,5 @@ nums_no_WA_excel = {"Name": nums_with_no_WA_owner, "Phone": nums_with_no_WA}
 Wrong_nums = {"Name-Wrong": nums_wrong_owner, "Phone-Wrong": wrong_nums}
 Report1 = pd.DataFrame(nums_no_WA_excel)
 Report2 = pd.DataFrame(Wrong_nums)
-Report1.to_csv("Report1.csv", encoding="UTF-8")
-Report2.to_csv("Report2.csv", encoding="UTF-8")
+Report1.to_csv("NoWhatsapp.csv", encoding="UTF-8")
+Report2.to_csv("wrong_nums.csv", encoding="UTF-8")
