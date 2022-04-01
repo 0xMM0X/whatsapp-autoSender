@@ -26,6 +26,7 @@ python3 AutoSender.py
 now scan the QR code and wait till the automation finishes 
 
 
+after it finishes it will drop 2 CSV reports 1 for the wrong numbers and other for no what's app numbers
 
 **Free Software, Hell Yeah! don't send more than 200 massage a day or you will get panned**
 
