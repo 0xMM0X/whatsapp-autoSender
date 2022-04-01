@@ -20,6 +20,12 @@ you can now add the names and the numbers to the list.csv file
 also edit the msg variable to add your custom msg
 
 
+```bash
+python3 AutoSender.py
+```
+now scan the QR code and wait till the automation finishes 
+
+
 
 **Free Software, Hell Yeah! don't send more than 200 massage a day or you will get panned**
 
