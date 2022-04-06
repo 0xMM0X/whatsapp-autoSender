@@ -1,5 +1,7 @@
 # Copyright © 2022 | Made By: MostafaAbdelaziz "me@mmox.me" , Mohamed Ehab 
 # -- coding: utf-8 -
+
+#Essential Imports
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -94,6 +96,8 @@ for num in al:  # loop to send to all the sheet
 
 nums_no_WA_excel = {"Name": nums_with_no_WA_owner, "Phone": nums_with_no_WA}
 Wrong_nums = {"Name-Wrong": nums_wrong_owner, "Phone-Wrong": wrong_nums}
+
+#Final Reports
 Report1 = pd.DataFrame(nums_no_WA_excel)
 Report2 = pd.DataFrame(Wrong_nums)
 Report1.to_csv("NoWhatsapp.csv", encoding="UTF-8")
