@@ -3,8 +3,10 @@
 
 #Essential Imports
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
@@ -18,8 +20,8 @@ nums_with_no_WA_owner = []  # an empty list to append numbers with no what'sApp
 wrong_nums = []  # an empty list to append non valid numbers
 nums_wrong_owner = []
 
-def element_presence(by, xpath, time):
-    element_present = EC.presence_of_element_located((By.XPATH, xpath))
+def element_presence(by, path, time):
+    element_present = EC.presence_of_element_located((by, path))
     WebDriverWait(driver, time).until(element_present)
 
 def send(num,name,url,msg):
@@ -39,17 +41,21 @@ def send(num,name,url,msg):
             wrong_nums.append(num)
             return
 
-        msg_xpath = '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]'
+        msg_css_path = "div[contenteditable='true'][role='textbox'][aria-placeholder='Type a message']"
 
         driver.get(url + num)
 
         try:
             time.sleep(3)
-            element_presence(By.XPATH, msg_xpath, 30)
+            element_presence(By.CSS_SELECTOR, msg_css_path, 30)
             time.sleep(3)
-            txt_box = driver.find_element(By.XPATH, msg_xpath)
+
+            txt_box = driver.find_element(By.CSS_SELECTOR, msg_css_path)
+            txt_box.click()
+
             txt_box.send_keys("**This is an Automated Massage Don't replay** Hi "+name+', '+msg)  # Customize this line to add the name to your message
-            txt_box.send_keys("\n")
+            time.sleep(1)
+            txt_box.send_keys(Keys.ENTER)
             time.sleep(6)  # This is just to avoid bad connection problems
 
         except:
@@ -78,7 +84,7 @@ al = dict(zip(nums, nms))  # zipping the two lists in a dictionary
 url = 'https://web.whatsapp.com/send?phone='
 link = 'https://web.whatsapp.com/'
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 driver.get(link)
 
